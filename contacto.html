@@ -6,126 +6,153 @@
 <meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
   <meta name="description" content="Contacta con Domenech Services S.L. para solicitar información o presupuesto.">
   <title>Contacto | Domenech Services S.L.</title>
 </head>
-<body>
+<body data-page="contacto">
   <header class="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="brand" aria-label="Domenech Services">
-        <img src="img/logo-domenech-services.png" alt="Domenech Services S.L.">
-      </a>
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="Domenech Services - Inicio">
+      <img src="img/logo-domenech-services.png" alt="Domenech Services S.L.">
+    </a>
 
-      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+    <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
 
-      <nav class="main-nav">
-        <a href="index.html">Inicio</a>
-        <a href="servicios.html">Servicios</a>
-        <a class="active" href="contacto.html">Contacto</a>
-      </nav>
-    </div>
-  </header>
+    <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
+      <a data-page="inicio" href="index.html">Inicio</a>
+      <a data-page="servicios" href="servicios.html">Servicios</a>
+      <a data-page="contacto" href="contacto.html">Contacto</a>
+      <a class="nav-cta" href="contacto.html#formulario">Solicitar presupuesto</a>
+    </nav>
+  </div>
+</header>
 
   <main>
-    <section class="page-hero page-hero-contact">
-      <div class="container">
-        <span class="label">Contacto</span>
-        <h1>Cuéntanos qué necesitas.</h1>
+    <section class="page-hero contact-hero">
+      <div class="container page-hero-grid">
+        <div>
+          <span class="eyebrow">CONTACTO</span>
+          <h1>Cuéntanos qué necesitas.</h1>
+        </div>
         <p>
-          Puedes llamarnos, escribirnos por correo o rellenar el formulario.
+          Ponte en contacto con nosotros para solicitar información, valorar un trabajo
+          o recibir un presupuesto adaptado a tus necesidades.
         </p>
       </div>
     </section>
 
-    <section class="section contact-section">
-      <div class="container contact-grid">
-        <div class="contact-data">
-          <div class="contact-item">
-            <span class="label">Teléfono</span>
-            <a href="tel:+34629358623">+34 629 35 86 23</a>
-          </div>
+    <section class="contact-section" id="formulario">
+      <div class="container contact-layout">
+        <aside class="contact-panel">
+          <span class="section-label section-label-light">Datos de contacto</span>
+          <h2>Domenech Services S.L.</h2>
 
-          <div class="contact-item">
-            <span class="label">Correo</span>
-            <a href="mailto:info@domenechservices.com">info@domenechservices.com</a>
-          </div>
-
-          <div class="contact-item">
-            <span class="label">Domicilio fiscal</span>
-            <p>C/ Passerell 30<br>La Nucia 03530</p>
-          </div>
-        </div>
-
-        <form class="contact-form-minimal" id="contact-form">
-          <div class="field-row">
-            <label>
-              <span>Nombre</span>
-              <input type="text" name="nombre" required autocomplete="name">
-            </label>
-            <label>
+          <div class="contact-list">
+            <div class="contact-row">
               <span>Teléfono</span>
-              <input type="tel" name="telefono" required autocomplete="tel">
-            </label>
+              <a href="tel:+34629358623">+34 629 35 86 23</a>
+            </div>
+            <div class="contact-row">
+              <span>Correo</span>
+              <a href="mailto:info@domenechservices.com">info@domenechservices.com</a>
+            </div>
+            <div class="contact-row">
+              <span>Domicilio fiscal</span>
+              <p>C/ Passerell 30<br>La Nucia 03530</p>
+            </div>
           </div>
 
-          <label>
-            <span>Correo electrónico</span>
-            <input type="email" name="email" autocomplete="email">
-          </label>
+          <div class="contact-panel-note">
+            <span></span>
+            <p>Atención a particulares, empresas, comunidades y hoteles.</p>
+          </div>
+        </aside>
 
-          <label>
-            <span>Servicio</span>
-            <select name="servicio" required>
-              <option value="">Selecciona una opción</option>
-              <option>Pulido y cristalizado de suelos y escaleras</option>
-              <option>Limpieza de moquetas, alfombras y tapicerías</option>
-              <option>Limpieza de cristales</option>
-              <option>Varios servicios / Otro</option>
-            </select>
-          </label>
+        <div class="form-wrap">
+          <div class="form-heading">
+            <span class="section-label">Solicitar presupuesto</span>
+            <h2>Envíanos tu consulta.</h2>
+            <p>Rellena el formulario con los datos básicos del trabajo que necesitas.</p>
+          </div>
 
-          <label>
-            <span>Mensaje</span>
-            <textarea name="mensaje" rows="6" placeholder="Cuéntanos brevemente qué necesitas" required></textarea>
-          </label>
+          <form class="contact-form" id="contact-form">
+            <div class="form-grid">
+              <label>
+                <span>Nombre *</span>
+                <input type="text" name="nombre" required autocomplete="name" placeholder="Tu nombre">
+              </label>
+              <label>
+                <span>Teléfono *</span>
+                <input type="tel" name="telefono" required autocomplete="tel" placeholder="Tu teléfono">
+              </label>
+            </div>
 
-          <button class="btn" type="submit">Enviar consulta</button>
-          <p class="form-helper">
-            Al pulsar enviar se abrirá tu aplicación de correo con el mensaje preparado para
-            info@domenechservices.com.
-          </p>
-        </form>
+            <label>
+              <span>Correo electrónico</span>
+              <input type="email" name="email" autocomplete="email" placeholder="tu@email.com">
+            </label>
+
+            <label>
+              <span>Servicio *</span>
+              <select name="servicio" required>
+                <option value="">Selecciona un servicio</option>
+                <option>Pulido y cristalizado de suelos y escaleras</option>
+                <option>Limpieza de moquetas, alfombras y tapicerías</option>
+                <option>Limpieza de cristales</option>
+                <option>Varios servicios / Otro</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Mensaje *</span>
+              <textarea name="mensaje" rows="6" required placeholder="Describe brevemente el trabajo que necesitas"></textarea>
+            </label>
+
+            <div class="form-submit">
+              <button class="btn-primary" type="submit">Enviar solicitud</button>
+              <p>Al enviar, se abrirá tu aplicación de correo con la consulta preparada.</p>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-top">
-      <div>
-        <img src="img/logo-domenech-services.png" alt="Domenech Services S.L." class="footer-logo">
-      </div>
-
-      <div class="footer-contact">
-        <a href="tel:+34629358623">+34 629 35 86 23</a>
-        <a href="mailto:info@domenechservices.com">info@domenechservices.com</a>
-        <span>C/ Passerell 30, La Nucia 03530</span>
-      </div>
+  <div class="container footer-main">
+    <div class="footer-brand">
+      <img src="img/logo-domenech-services.png" alt="Domenech Services S.L.">
+      <p>Servicios profesionales de limpieza, mantenimiento y tratamiento de superficies.</p>
     </div>
 
-    <div class="container footer-bottom">
-      <span>© <span id="year"></span> Domenech Services S.L.</span>
-      <div>
-        <a href="#">Aviso legal</a>
-        <a href="#">Privacidad</a>
-        <a href="#">Cookies</a>
-      </div>
+    <div class="footer-col">
+      <strong>Navegación</strong>
+      <a href="index.html">Inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="contacto.html">Contacto</a>
     </div>
-  </footer>
 
+    <div class="footer-col">
+      <strong>Contacto</strong>
+      <a href="tel:+34629358623">+34 629 35 86 23</a>
+      <a href="mailto:info@domenechservices.com">info@domenechservices.com</a>
+      <span>C/ Passerell 30, La Nucia 03530</span>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <span>© <span id="year"></span> Domenech Services S.L.</span>
+    <div>
+      <a href="#">Aviso legal</a>
+      <a href="#">Privacidad</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
   <script src="script.js"></script>
 </body>
 </html>
