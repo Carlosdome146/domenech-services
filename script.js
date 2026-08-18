@@ -1,81 +1,52 @@
-const header = document.querySelector(".site-header");
-const navToggle = document.querySelector(".nav-toggle");
-const mainNav = document.querySelector(".main-nav");
-const navLinks = document.querySelectorAll(".main-nav a");
-const year = document.getElementById("year");
-const contactForm = document.getElementById("contact-form");
-const formNote = document.getElementById("form-note");
+const toggle = document.querySelector(".menu-toggle");
+const nav = document.querySelector(".main-nav");
 
-const setHeaderState = () => {
-  header.classList.toggle("scrolled", window.scrollY > 18);
-};
-
-setHeaderState();
-window.addEventListener("scroll", setHeaderState, { passive: true });
-
-if (year) {
-  year.textContent = new Date().getFullYear();
-}
-
-if (navToggle && mainNav) {
-  navToggle.addEventListener("click", () => {
-    const isOpen = mainNav.classList.toggle("open");
-    navToggle.classList.toggle("active", isOpen);
-    navToggle.setAttribute("aria-expanded", String(isOpen));
-    navToggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
-    document.body.classList.toggle("menu-open", isOpen);
+if (toggle && nav) {
+  toggle.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(open));
+    document.body.classList.toggle("menu-open", open);
   });
 
-  navLinks.forEach((link) => {
+  nav.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
-      mainNav.classList.remove("open");
-      navToggle.classList.remove("active");
-      navToggle.setAttribute("aria-expanded", "false");
-      navToggle.setAttribute("aria-label", "Abrir menú");
+      nav.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
       document.body.classList.remove("menu-open");
     });
   });
 }
 
-const revealElements = document.querySelectorAll(".reveal");
+document.querySelectorAll("#year").forEach(el => {
+  el.textContent = new Date().getFullYear();
+});
 
-if ("IntersectionObserver" in window) {
-  const revealObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12, rootMargin: "0px 0px -30px 0px" }
-  );
-
-  revealElements.forEach((element) => revealObserver.observe(element));
-} else {
-  revealElements.forEach((element) => element.classList.add("visible"));
-}
+const contactForm = document.getElementById("contact-form");
 
 if (contactForm) {
   contactForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const submitButton = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitButton.textContent;
+    const data = new FormData(contactForm);
+    const nombre = data.get("nombre") || "";
+    const telefono = data.get("telefono") || "";
+    const email = data.get("email") || "";
+    const servicio = data.get("servicio") || "";
+    const mensaje = data.get("mensaje") || "";
 
-    submitButton.textContent = "Datos recibidos";
-    submitButton.disabled = true;
+    const subject = `Solicitud de información - ${servicio}`;
+    const body =
+`Nombre: ${nombre}
+Teléfono: ${telefono}
+Correo: ${email}
+Servicio: ${servicio}
 
-    if (formNote) {
-      formNote.textContent =
-        "Formulario preparado. En el siguiente paso lo conectaremos al WhatsApp o correo oficial de Domenech Services.";
-      formNote.classList.add("success");
-    }
+Mensaje:
+${mensaje}`;
 
-    window.setTimeout(() => {
-      submitButton.textContent = originalText;
-      submitButton.disabled = false;
-    }, 2600);
+    const mailto =
+      `mailto:info@domenechservices.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailto;
   });
 }
