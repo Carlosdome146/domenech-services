@@ -98,3 +98,14 @@ SEO V4 — OPTIMIZACIÓN TÉCNICA Y LOCAL
 - Archivo STAGING-SEO.txt con instrucciones para no indexar el dominio temporal pages.dev.
 
 IMPORTANTE: ningún cambio técnico puede garantizar la posición nº1. Para búsquedas locales, el Perfil de Empresa de Google, reseñas, enlaces/citas locales, distancia y notoriedad influyen de forma decisiva.
+
+
+CAMBIOS V4.1
+- Hero de Inicio simplificado:
+  "Domenech Services S.L."
+  "Pulido y cristalizado de suelos."
+- La referencia a Comunidad Valenciana, hoteles, comunidades, empresas y particulares
+  se mantiene en el texto de apoyo y en toda la arquitectura SEO.
+- Reducido ligeramente el tamaño y espacio vertical del hero.
+- Corregido el logo del footer en todas las páginas:
+  ahora conserva siempre su proporción original y no se deforma por los atributos HTML.

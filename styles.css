@@ -180,13 +180,13 @@ h1,h2,h3{
   grid-template-columns:1.15fr .85fr;
   align-items:center;
   gap:60px;
-  padding-top:72px;
-  padding-bottom:145px;
+  padding-top:58px;
+  padding-bottom:132px;
 }
 .hero-content{max-width:810px}
 .hero-content h1{
   margin:16px 0 0;
-  font-size:clamp(52px,6.2vw,84px);
+  font-size:clamp(48px,5.4vw,72px);
   line-height:.98;
   color:#fff;
 }
@@ -467,7 +467,7 @@ h1,h2,h3{
 /* Footer */
 .site-footer{padding:72px 0 24px;background:#0e0f12;color:#d5d5d8}
 .footer-grid{display:grid;grid-template-columns:1.4fr .8fr 1fr;gap:60px}
-.footer-brand img{width:245px;padding:8px 12px;background:#fff;border-radius:10px}
+.footer-brand img{display:block;width:245px;max-width:100%;height:auto!important;aspect-ratio:auto;object-fit:contain;padding:8px 12px;background:#fff;border-radius:10px}
 .footer-brand p{max-width:380px;color:#8f9096;font-size:13px}
 .footer-whatsapp{display:inline-block;margin-top:8px;color:#fff;font-size:12px;font-weight:700}
 .footer-links{display:grid;align-content:start;gap:9px;color:#97989e;font-size:12px}
