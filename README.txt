@@ -54,3 +54,28 @@ CAMBIOS V2
 - Nueva categoría de trabajos: Impermeabilización.
 - Nueva sección y categoría: Proyectos internacionales.
 - Se incorpora un trabajo real realizado en Ginebra, Suiza.
+
+
+CAMBIOS V3 — LEGAL Y COOKIES
+- Añadido aviso-legal.html
+- Añadido privacidad.html
+- Añadido cookies.html
+- Añadido cookie-consent.js
+- Banner de consentimiento con:
+  RECHAZAR TODAS | CONFIGURAR | ACEPTAR TODAS
+  Las tres opciones aparecen al mismo nivel.
+- Panel de configuración con categorías:
+  técnicas/necesarias, analíticas y marketing.
+- La elección se guarda en localStorage con la clave:
+  domenech_cookie_consent_v1
+  y se vuelve a solicitar transcurridos 12 meses.
+- En todas las páginas se añade al footer:
+  Aviso legal | Privacidad | Cookies | Configurar cookies
+- El formulario enlaza expresamente a la Política de privacidad.
+- Actualmente no hay cookies analíticas o publicitarias activas.
+  El sistema queda preparado para bloquear futuros scripts opcionales hasta obtener consentimiento.
+
+IMPORTANTE PARA CERRAR EL AVISO LEGAL
+Falta incorporar el NIF/CIF de Domenech Services S.L. y, si corresponde,
+los datos de inscripción en el Registro Mercantil. No se han inventado esos datos.
+La ubicación pública se mantiene como Benidorm · Alicante, según lo solicitado.
