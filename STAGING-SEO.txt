@@ -1,0 +1,5 @@
+ANTES DE TENER EL DOMINIO DEFINITIVO
+
+Si publicas la web temporalmente en un subdominio *.pages.dev, evita que Google indexe esa URL temporal. Lo más limpio es proteger el entorno de staging con Cloudflare Access o añadir temporalmente X-Robots-Tag: noindex. NO dejes ese noindex cuando conectes domenechservices.com.
+
+Los canonical de esta versión ya apuntan a https://domenechservices.com/.

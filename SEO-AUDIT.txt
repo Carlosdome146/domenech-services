@@ -1,0 +1,26 @@
+DOMENECH SERVICES - AUDITORÍA SEO V4
+
+Páginas HTML: 19
+Nuevas landing SEO: 11
+Imágenes de trabajos en sitemap: 35
+Enlaces internos rotos detectados: 0
+
+404.html: title=45 caracteres, description=21, H1=1, canonical=
+aviso-legal.html: title=36 caracteres, description=58, H1=1, canonical=https://domenechservices.com/aviso-legal.html
+contacto.html: title=57 caracteres, description=141, H1=1, canonical=https://domenechservices.com/contacto.html
+cookies.html: title=44 caracteres, description=75, H1=1, canonical=https://domenechservices.com/cookies.html
+cristalizado-suelos.html: title=54 caracteres, description=144, H1=1, canonical=https://domenechservices.com/cristalizado-suelos.html
+impermeabilizacion-cubiertas.html: title=62 caracteres, description=144, H1=1, canonical=https://domenechservices.com/impermeabilizacion-cubiertas.html
+index.html: title=75 caracteres, description=153, H1=1, canonical=https://domenechservices.com/
+limpieza-cristales.html: title=56 caracteres, description=131, H1=1, canonical=https://domenechservices.com/limpieza-cristales.html
+limpieza-moquetas-tapicerias.html: title=56 caracteres, description=132, H1=1, canonical=https://domenechservices.com/limpieza-moquetas-tapicerias.html
+mantenimiento-comunidades.html: title=62 caracteres, description=133, H1=1, canonical=https://domenechservices.com/mantenimiento-comunidades.html
+mantenimiento-hoteles.html: title=55 caracteres, description=150, H1=1, canonical=https://domenechservices.com/mantenimiento-hoteles.html
+privacidad.html: title=47 caracteres, description=76, H1=1, canonical=https://domenechservices.com/privacidad.html
+pulido-suelos-alicante.html: title=63 caracteres, description=155, H1=1, canonical=https://domenechservices.com/pulido-suelos-alicante.html
+pulido-suelos-castellon.html: title=64 caracteres, description=156, H1=1, canonical=https://domenechservices.com/pulido-suelos-castellon.html
+pulido-suelos-valencia.html: title=63 caracteres, description=155, H1=1, canonical=https://domenechservices.com/pulido-suelos-valencia.html
+pulido-suelos.html: title=60 caracteres, description=130, H1=1, canonical=https://domenechservices.com/pulido-suelos.html
+servicios.html: title=61 caracteres, description=138, H1=1, canonical=https://domenechservices.com/servicios.html
+trabajos.html: title=63 caracteres, description=119, H1=1, canonical=https://domenechservices.com/trabajos.html
+zonas-servicio.html: title=60 caracteres, description=146, H1=1, canonical=https://domenechservices.com/zonas-servicio.html

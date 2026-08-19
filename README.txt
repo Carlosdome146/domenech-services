@@ -79,3 +79,22 @@ IMPORTANTE PARA CERRAR EL AVISO LEGAL
 Falta incorporar el NIF/CIF de Domenech Services S.L. y, si corresponde,
 los datos de inscripción en el Registro Mercantil. No se han inventado esos datos.
 La ubicación pública se mantiene como Benidorm · Alicante, según lo solicitado.
+
+
+SEO V4 — OPTIMIZACIÓN TÉCNICA Y LOCAL
+- H1 principal orientado a "pulido y cristalizado de suelos en Comunidad Valenciana".
+- Páginas específicas y únicas para pulido, cristalizado, cristales, textiles, impermeabilización, hoteles y comunidades.
+- Hub de zonas de servicio y páginas provinciales únicas para Alicante, Valencia y Castellón.
+- Se han evitado cientos de páginas de municipio repetidas para no caer en páginas puerta / doorway pages.
+- Canonical, robots, Open Graph, Twitter Card y hreflang es-ES en páginas indexables.
+- Schema.org LocalBusiness + WebSite + OfferCatalog en Inicio; Service + BreadcrumbList en páginas de servicio.
+- Sitemap index, sitemap de páginas y sitemap de imágenes.
+- Imágenes con width/height, decoding async y lazy loading cuando procede.
+- Hero principal convertido a imagen HTML de alta prioridad para mejorar LCP.
+- Google Fonts eliminado para reducir peticiones externas y mejorar Core Web Vitals.
+- Cache larga para imágenes WebP en Cloudflare.
+- Enlazado interno contextual y footer SEO.
+- 404 marcado noindex.
+- Archivo STAGING-SEO.txt con instrucciones para no indexar el dominio temporal pages.dev.
+
+IMPORTANTE: ningún cambio técnico puede garantizar la posición nº1. Para búsquedas locales, el Perfil de Empresa de Google, reseñas, enlaces/citas locales, distancia y notoriedad influyen de forma decisiva.
