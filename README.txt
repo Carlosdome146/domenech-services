@@ -109,3 +109,13 @@ CAMBIOS V4.1
 - Reducido ligeramente el tamaño y espacio vertical del hero.
 - Corregido el logo del footer en todas las páginas:
   ahora conserva siempre su proporción original y no se deforma por los atributos HTML.
+
+
+CAMBIOS V4.2 — CORRECCIÓN DEFINITIVA DEL LOGO DEL FOOTER
+- Se crea un recurso exclusivo:
+  img/logo-domenech-footer-v2.webp
+- El footer ya no reutiliza el logo principal.
+- Se eliminan width/height HTML del logo del footer.
+- Regla CSS específica y reforzada para conservar siempre la proporción.
+- styles.css pasa a styles-v42.css para evitar que navegador/Cloudflare siga usando CSS anterior en caché.
+- Caché de CSS reducida temporalmente de 7 días a 1 hora mientras se termina el diseño.
