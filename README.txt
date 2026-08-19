@@ -41,3 +41,16 @@ DATOS UTILIZADOS
 Correo: info@domenechservices.com
 Teléfono: +34 629 35 86 23
 Domicilio fiscal: C/ Passerell 30, La Nucia 03530
+
+
+CAMBIOS V2
+- Domicilio fiscal eliminado de la web pública.
+- Ubicación mostrada: Benidorm · Alicante.
+- Logos de hoteles eliminados de la página Contacto para reducir saturación visual.
+- Nuevo servicio: Impermeabilización de cubiertas y tratamiento de filtraciones.
+  Descripción: sistemas reforzados con fibra y revestimientos impermeabilizantes elásticos.
+- Nuevas fotografías de pulido de hormigón.
+- Nueva categoría de trabajos: Hormigón.
+- Nueva categoría de trabajos: Impermeabilización.
+- Nueva sección y categoría: Proyectos internacionales.
+- Se incorpora un trabajo real realizado en Ginebra, Suiza.
