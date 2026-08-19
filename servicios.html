@@ -1,20 +1,31 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
+  
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#b10f15">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-  <meta name="description" content="Servicios de Domenech Services S.L.: pulido y cristalizado, limpieza de moquetas, alfombras y tapicerías, y limpieza profesional de cristales.">
+
+  <meta name="description" content="Servicios de Domenech Services S.L. Pulido y cristalizado de suelos y escaleras, limpieza de moquetas, alfombras y tapicerías y limpieza de cristales.">
   <title>Servicios | Domenech Services S.L.</title>
 </head>
 <body data-page="servicios">
-  <header class="site-header">
+  
+<header class="site-header">
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a href="tel:+34629358623">+34 629 35 86 23</a>
+      <a href="mailto:info@domenechservices.com">info@domenechservices.com</a>
+      <span>C/ Passerell 30, La Nucia 03530</span>
+    </div>
+  </div>
+
   <div class="container header-inner">
-    <a class="brand" href="index.html" aria-label="Domenech Services - Inicio">
+    <a class="brand" href="index.html" aria-label="Domenech Services">
       <img src="img/logo-domenech-services.png" alt="Domenech Services S.L.">
     </a>
 
@@ -22,7 +33,7 @@
       <span></span><span></span><span></span>
     </button>
 
-    <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
+    <nav class="main-nav" id="main-nav">
       <a data-page="inicio" href="index.html">Inicio</a>
       <a data-page="servicios" href="servicios.html">Servicios</a>
       <a data-page="contacto" href="contacto.html">Contacto</a>
@@ -31,16 +42,17 @@
   </div>
 </header>
 
+
   <main>
     <section class="page-hero">
       <div class="container page-hero-grid">
         <div>
-          <span class="eyebrow">SERVICIOS</span>
-          <h1>Soluciones profesionales para cada superficie.</h1>
+          <span class="eyebrow">Servicios</span>
+          <h1>Tratamientos y limpiezas profesionales para cada necesidad.</h1>
         </div>
         <p>
-          Trabajamos con empresas, hoteles, comunidades y particulares, adaptando el
-          tratamiento al uso, material y necesidades de cada espacio.
+          Ofrecemos un servicio profesional para espacios que necesitan limpieza técnica,
+          mantenimiento continuo y una excelente presencia visual.
         </p>
       </div>
     </section>
@@ -48,85 +60,115 @@
     <section class="services-detail">
       <div class="container">
         <article class="service-detail" id="pulido">
-          <div class="service-number">01</div>
-          <div class="service-main">
-            <span class="section-label">Suelos y escaleras</span>
+          <div class="service-media">
+            <img src="img/trabajo-04-marmol-oscuro.jpg" alt="Suelo de mármol oscuro con acabado brillante">
+          </div>
+          <div class="service-text">
+            <span class="section-label">01 · Suelos y escaleras</span>
             <h2>Pulido y cristalizado de suelos y escaleras</h2>
             <p>
-              Tratamientos profesionales destinados a recuperar el brillo, mejorar la
-              uniformidad y renovar la apariencia de pavimentos y escaleras.
+              Tratamientos orientados a recuperar brillo, uniformidad y mejor aspecto
+              en pavimentos y escaleras. Ideal para superficies que requieren una
+              mejora estética clara y un mantenimiento profesional.
             </p>
-          </div>
-          <div class="service-side">
-            <div class="service-visual surface-floor"></div>
-            <a class="text-link" href="contacto.html#formulario">Solicitar presupuesto <span>→</span></a>
+            <ul class="service-list">
+              <li>Acabado visual cuidado</li>
+              <li>Tratamiento adaptado al tipo de suelo</li>
+              <li>Intervenciones para hoteles, empresas y viviendas</li>
+            </ul>
           </div>
         </article>
 
-        <article class="service-detail" id="textiles">
-          <div class="service-number">02</div>
-          <div class="service-main">
-            <span class="section-label">Textiles</span>
+        <article class="service-detail reverse" id="textiles">
+          <div class="service-media">
+            <img src="img/trabajo-06-pasillo.jpg" alt="Interior de hotel con suelo decorativo brillante">
+          </div>
+          <div class="service-text">
+            <span class="section-label">02 · Textiles</span>
             <h2>Limpieza de moquetas, alfombras y tapicerías</h2>
             <p>
-              Limpieza profunda para retirar suciedad acumulada, manchas y olores,
-              mejorando la apariencia y la higiene de las superficies textiles.
+              Limpieza profunda de superficies textiles para mejorar su higiene,
+              su mantenimiento y su presencia visual. Pensado para entornos que
+              requieren cuidado y una imagen siempre impecable.
             </p>
-          </div>
-          <div class="service-side">
-            <div class="service-visual surface-textile"></div>
-            <a class="text-link" href="contacto.html#formulario">Solicitar presupuesto <span>→</span></a>
+            <ul class="service-list">
+              <li>Limpieza de moquetas y alfombras</li>
+              <li>Tratamiento de tapicerías</li>
+              <li>Servicio adaptado a espacios hoteleros y residenciales</li>
+            </ul>
           </div>
         </article>
 
         <article class="service-detail" id="cristales">
-          <div class="service-number">03</div>
-          <div class="service-main">
-            <span class="section-label">Cristales</span>
+          <div class="service-media">
+            <img src="img/trabajo-01-altura.jpg" alt="Limpieza de cristales en altura con elevadores">
+          </div>
+          <div class="service-text">
+            <span class="section-label">03 · Cristales</span>
             <h2>Limpieza profesional de cristales</h2>
             <p>
-              Limpieza de ventanales, cristaleras, escaparates y otras superficies
-              acristaladas para conseguir un acabado uniforme y sin marcas.
+              Limpieza de cristaleras, ventanales y otras superficies acristaladas
+              con un enfoque profesional, tanto para mantenimiento como para actuaciones puntuales.
             </p>
-          </div>
-          <div class="service-side">
-            <div class="service-visual surface-glass"></div>
-            <a class="text-link" href="contacto.html#formulario">Solicitar presupuesto <span>→</span></a>
+            <ul class="service-list">
+              <li>Escaparates y ventanales</li>
+              <li>Cristales en espacios comerciales y hoteles</li>
+              <li>Servicio cuidado, seguro y profesional</li>
+            </ul>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="process-section">
-      <div class="container process-grid">
-        <div>
-          <span class="section-label section-label-light">Nuestra forma de trabajar</span>
-          <h2>Un servicio adaptado a cada necesidad.</h2>
+    <section class="why-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-label">Por qué elegirnos</span>
+            <h2>Profesionalidad, imagen y atención al detalle.</h2>
+          </div>
+          <p>
+            El enfoque de Domenech Services está pensado para transmitir confianza
+            y ofrecer un resultado final alineado con espacios que deben verse impecables.
+          </p>
         </div>
-        <div class="process-steps">
-          <div><span>01</span><p>Valoramos el espacio y el tipo de superficie.</p></div>
-          <div><span>02</span><p>Definimos el tratamiento o servicio adecuado.</p></div>
-          <div><span>03</span><p>Realizamos el trabajo cuidando cada detalle.</p></div>
+
+        <div class="why-grid">
+          <div class="why-card">
+            <strong>Profesionalidad</strong>
+            <p>Experiencia en limpieza y tratamiento de superficies en distintos entornos.</p>
+          </div>
+          <div class="why-card">
+            <strong>Trabajos de calidad</strong>
+            <p>Buscamos un resultado visual cuidado, limpio y duradero.</p>
+          </div>
+          <div class="why-card">
+            <strong>Atención personalizada</strong>
+            <p>Nos adaptamos al tipo de cliente, superficie y necesidad concreta.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="home-cta">
-      <div class="container home-cta-inner">
+    <section class="cta-banner compact">
+      <div class="container cta-banner-inner">
         <div>
-          <span class="section-label">Presupuesto</span>
-          <h2>Cuéntanos qué servicio necesitas.</h2>
+          <span class="section-label">Presupuesto sin compromiso</span>
+          <h2>¿Necesitas uno de estos servicios?</h2>
         </div>
-        <a class="btn-primary" href="contacto.html#formulario">Solicitar presupuesto</a>
+        <div class="cta-actions">
+          <a class="btn-primary" href="contacto.html#formulario">Solicitar presupuesto</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-  <div class="container footer-main">
+  
+<footer class="site-footer">
+  <div class="container footer-grid">
     <div class="footer-brand">
       <img src="img/logo-domenech-services.png" alt="Domenech Services S.L.">
-      <p>Servicios profesionales de limpieza, mantenimiento y tratamiento de superficies.</p>
+      <p>Especialistas en pulido y cristalizado de suelos y escaleras, limpieza de moquetas, alfombras y tapicerías, y limpieza profesional de cristales.</p>
     </div>
 
     <div class="footer-col">
@@ -153,6 +195,11 @@
     </div>
   </div>
 </footer>
+
+<a class="floating-whatsapp" href="https://wa.me/34629358623?text=Hola%2C%20quiero%20solicitar%20informaci%C3%B3n%20o%20presupuesto%20a%20Domenech%20Services." target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+  WA
+</a>
+
   <script src="script.js"></script>
 </body>
 </html>

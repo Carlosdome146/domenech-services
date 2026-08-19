@@ -30,9 +30,7 @@ if (toggle && nav) {
 
 const currentPage = document.body.dataset.page;
 document.querySelectorAll(".main-nav [data-page]").forEach(link => {
-  if (link.dataset.page === currentPage) {
-    link.classList.add("active");
-  }
+  if (link.dataset.page === currentPage) link.classList.add("active");
 });
 
 document.querySelectorAll("#year").forEach(el => {
@@ -40,9 +38,8 @@ document.querySelectorAll("#year").forEach(el => {
 });
 
 const form = document.getElementById("contact-form");
-
 if (form) {
-  form.addEventListener("submit", event => {
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
 
     const data = new FormData(form);
