@@ -119,3 +119,9 @@ CAMBIOS V4.2 — CORRECCIÓN DEFINITIVA DEL LOGO DEL FOOTER
 - Regla CSS específica y reforzada para conservar siempre la proporción.
 - styles.css pasa a styles-v42.css para evitar que navegador/Cloudflare siga usando CSS anterior en caché.
 - Caché de CSS reducida temporalmente de 7 días a 1 hora mientras se termina el diseño.
+
+
+CAMBIOS V4.3
+- Sustituida la imagen de referencia del servicio de limpieza de moquetas por la nueva foto de moqueta 2, optimizada en WebP.
+- Actualizada la portada del servicio de moquetas y las referencias visuales en Inicio, Servicios y Trabajos.
+- Sustituido el bloque de Inicio sobre “Recuperamos superficies...” por un bloque centrado en pulido y cristalizado de hormigón, usando la nueva foto hormigón 3 optimizada en WebP.
