@@ -178,7 +178,7 @@ ${data.mensaje || ""}`;
       }
 
       window.location.href =
-        `mailto:info@domenechservices.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        `mailto:domenechservices@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     } finally {
       submit.disabled = false;
       submit.innerHTML = original;

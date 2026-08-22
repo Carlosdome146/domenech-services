@@ -38,7 +38,7 @@ Mientras no configures esas variables, la web seguirá funcionando:
 al enviar el formulario abrirá el correo del visitante con el mensaje ya preparado.
 
 DATOS UTILIZADOS
-Correo: info@domenechservices.com
+Correo: domenechservices@gmail.com
 Teléfono: +34 629 35 86 23
 Domicilio fiscal: C/ Passerell 30, La Nucia 03530
 

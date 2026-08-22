@@ -55,7 +55,7 @@ export async function onRequestPost(context) {
     },
     body: JSON.stringify({
       from: env.CONTACT_FROM_EMAIL,
-      to: ["info@domenechservices.com"],
+      to: ["domenechservices@gmail.com"],
       reply_to: email || undefined,
       subject: `Solicitud de presupuesto - ${servicio}`,
       text
