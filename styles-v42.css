@@ -924,3 +924,12 @@ h1,h2,h3{
   background:#fff !important;
   border-radius:10px !important;
 }
+
+
+/* V4.4 — redes sociales */
+.footer-socials{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.footer-social-link{display:inline-flex;align-items:center;gap:8px;min-height:38px;padding:8px 12px;border:1px solid rgba(255,255,255,.14);border-radius:999px;color:#f4f4f5;font-size:11px;font-weight:750;letter-spacing:.01em;transition:background .2s ease,border-color .2s ease,transform .2s ease,color .2s ease}
+.footer-social-link svg{width:17px;height:17px;flex:0 0 17px}
+.footer-social-link:hover{background:#a70e14;border-color:#a70e14;color:#fff;transform:translateY(-2px)}
+.footer-social-link:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@media(max-width:720px){.footer-socials{margin-top:12px}.footer-social-link{min-height:40px}}

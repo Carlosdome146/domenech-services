@@ -121,7 +121,9 @@ CAMBIOS V4.2 — CORRECCIÓN DEFINITIVA DEL LOGO DEL FOOTER
 - Caché de CSS reducida temporalmente de 7 días a 1 hora mientras se termina el diseño.
 
 
-CAMBIOS V4.3
-- Sustituida la imagen de referencia del servicio de limpieza de moquetas por la nueva foto de moqueta 2, optimizada en WebP.
-- Actualizada la portada del servicio de moquetas y las referencias visuales en Inicio, Servicios y Trabajos.
-- Sustituido el bloque de Inicio sobre “Recuperamos superficies...” por un bloque centrado en pulido y cristalizado de hormigón, usando la nueva foto hormigón 3 optimizada en WebP.
+V4.4 — REDES SOCIALES
+- Instagram y Facebook añadidos al footer de todas las páginas.
+- Enlaces externos seguros con target=_blank y rel=noopener noreferrer.
+- Iconos SVG integrados, sin librerías externas.
+- sameAs añadido al LocalBusiness de Schema.org para asociar oficialmente los perfiles sociales a la empresa.
+- Email público actualizado a domenechservices@gmail.com.
