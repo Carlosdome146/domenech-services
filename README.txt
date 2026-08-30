@@ -127,3 +127,15 @@ V4.4 — REDES SOCIALES
 - Iconos SVG integrados, sin librerías externas.
 - sameAs añadido al LocalBusiness de Schema.org para asociar oficialmente los perfiles sociales a la empresa.
 - Email público actualizado a domenechservices@gmail.com.
+
+
+V4.4.1
+- Instagram y Facebook convertidos a iconos compactos en el footer.
+- Hoja de estilos renombrada a styles-v44.css para evitar caché antigua de Cloudflare/navegador.
+
+
+V4.4.2 — Redes sociales + favicon
+- Instagram y Facebook compactos en footer.
+- Favicon PNG de Domenech Services incluido en los 19 HTML.
+- Variantes 48x48, 96x96 y Apple Touch Icon 180x180.
+- Todos los HTML mantienen styles-v44.css para cache-bust.
