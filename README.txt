@@ -20,7 +20,7 @@ ARCHIVOS PRINCIPALES
 - trabajos.html
 - contacto.html
 - styles-v44.css
-- script-v8.js
+- script-v9.js
 - cookie-consent-v2.js
 - worker.js
 - wrangler.jsonc
