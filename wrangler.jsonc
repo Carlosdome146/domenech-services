@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "domenech-services",
+  "main": "worker.js",
+  "compatibility_date": "2026-10-01",
+  "keep_vars": true,
+  "vars": {
+    "CONTACT_FROM_EMAIL": "Domenech Services <web@domenechservices.com>"
+  },
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "observability": {
+    "enabled": true
+  }
+}
