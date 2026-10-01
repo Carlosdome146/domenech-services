@@ -1,141 +1,80 @@
-DOMENECH SERVICES S.L. — VERSIÓN PREMIUM
+DOMENECH SERVICES S.L. — ESTADO ACTUAL
 
-ESTRUCTURA PRINCIPAL
+ARQUITECTURA
+- Hosting y ejecución: Cloudflare Workers + Static Assets.
+- Repositorio: Carlosdome146/domenech-services
+- Rama de producción: main
+- Despliegue: npx wrangler deploy
+- Configuración: wrangler.jsonc
+- Worker principal: worker.js
+- Assets estáticos: HTML, CSS, JavaScript e imágenes del repositorio.
+- API de contacto: POST /api/contacto
+- Lógica del formulario: functions/api/contacto.js
+- Envío de correo: Resend.
+- Protección antispam: Cloudflare Turnstile + honeypot + validaciones + rate limiting.
+- Analítica: Google Analytics 4, ID G-DGFJ2F2ZW5, cargado únicamente tras consentimiento analítico.
+
+ARCHIVOS PRINCIPALES
 - index.html
 - servicios.html
 - trabajos.html
 - contacto.html
-- styles.css
-- script.js
-- img/ (logo, hoteles y fotografías optimizadas en WebP)
-- functions/api/contacto.js (Cloudflare Pages Function opcional)
+- styles-v44.css
+- script-v8.js
+- cookie-consent-v2.js
+- worker.js
+- wrangler.jsonc
+- .assetsignore
+- functions/api/contacto.js
 - robots.txt
 - sitemap.xml
+- sitemap-pages.xml
+- sitemap-images.xml
 - _headers
+- img/
 
-MEJORAS DE ESTA VERSIÓN
-- Diseño premium y corporativo.
-- Inicio con fotografía real a pantalla completa.
-- Navegación: Inicio / Servicios / Trabajos / Contacto / Solicitar presupuesto.
-- Página independiente de Trabajos con filtros y lightbox.
-- Más de 20 fotografías reales optimizadas a WebP.
-- Logos de Suitopia, Solymar y RH Ifach.
-- Botón flotante de WhatsApp.
-- Formulario de contacto con envío directo opcional mediante Cloudflare + Resend.
-- Si el backend no está configurado, el formulario usa automáticamente el correo del visitante como fallback.
-- SEO básico: meta descriptions, Schema.org, robots.txt y sitemap.xml.
-- Cabeceras de seguridad para Cloudflare Pages.
+FORMULARIO DE CONTACTO
+Flujo:
+contacto.html
+→ Cloudflare Turnstile
+→ POST /api/contacto
+→ worker.js
+→ functions/api/contacto.js
+→ Resend
+→ domenechservices@gmail.com
 
-CONFIGURAR EL ENVÍO DIRECTO DEL FORMULARIO EN CLOUDFLARE
-1. Despliega el proyecto en Cloudflare Pages.
-2. Crea una cuenta/proyecto en Resend y verifica domenechservices.com.
-3. En Cloudflare > Settings > Variables and Secrets añade:
-   RESEND_API_KEY = tu API key de Resend
-   CONTACT_FROM_EMAIL = Domenech Services <web@domenechservices.com>
-4. Vuelve a desplegar.
+Variables de runtime necesarias en Cloudflare:
+- RESEND_API_KEY (Secret)
+- TURNSTILE_SECRET_KEY (Secret)
+- CONTACT_FROM_EMAIL = Domenech Services <web@domenechservices.com>
 
-Mientras no configures esas variables, la web seguirá funcionando:
-al enviar el formulario abrirá el correo del visitante con el mensaje ya preparado.
+El dominio domenechservices.com debe permanecer verificado en Resend.
+El Site Key de Turnstile es público y se integra en contacto.html.
+Las claves secretas nunca deben guardarse en GitHub.
 
-DATOS UTILIZADOS
-Correo: domenechservices@gmail.com
-Teléfono: +34 629 35 86 23
-Domicilio fiscal: C/ Passerell 30, La Nucia 03530
+COOKIES Y ANALÍTICA
+- Consentimiento almacenado con la clave domenech_cookie_consent_v2.
+- Google Analytics 4 no se carga hasta aceptar la categoría Analíticas.
+- Política de cookies y privacidad actualizadas para GA4.
 
-
-CAMBIOS V2
-- Domicilio fiscal eliminado de la web pública.
-- Ubicación mostrada: Benidorm · Alicante.
-- Logos de hoteles eliminados de la página Contacto para reducir saturación visual.
-- Nuevo servicio: Impermeabilización de cubiertas y tratamiento de filtraciones.
-  Descripción: sistemas reforzados con fibra y revestimientos impermeabilizantes elásticos.
-- Nuevas fotografías de pulido de hormigón.
-- Nueva categoría de trabajos: Hormigón.
-- Nueva categoría de trabajos: Impermeabilización.
-- Nueva sección y categoría: Proyectos internacionales.
-- Se incorpora un trabajo real realizado en Ginebra, Suiza.
-
-
-CAMBIOS V3 — LEGAL Y COOKIES
-- Añadido aviso-legal.html
-- Añadido privacidad.html
-- Añadido cookies.html
-- Añadido cookie-consent.js
-- Banner de consentimiento con:
-  RECHAZAR TODAS | CONFIGURAR | ACEPTAR TODAS
-  Las tres opciones aparecen al mismo nivel.
-- Panel de configuración con categorías:
-  técnicas/necesarias, analíticas y marketing.
-- La elección se guarda en localStorage con la clave:
-  domenech_cookie_consent_v1
-  y se vuelve a solicitar transcurridos 12 meses.
-- En todas las páginas se añade al footer:
-  Aviso legal | Privacidad | Cookies | Configurar cookies
-- El formulario enlaza expresamente a la Política de privacidad.
-- Actualmente no hay cookies analíticas o publicitarias activas.
-  El sistema queda preparado para bloquear futuros scripts opcionales hasta obtener consentimiento.
-
-IMPORTANTE PARA CERRAR EL AVISO LEGAL
-Falta incorporar el NIF/CIF de Domenech Services S.L. y, si corresponde,
-los datos de inscripción en el Registro Mercantil. No se han inventado esos datos.
-La ubicación pública se mantiene como Benidorm · Alicante, según lo solicitado.
-
-
-SEO V4 — OPTIMIZACIÓN TÉCNICA Y LOCAL
-- H1 principal orientado a "pulido y cristalizado de suelos en Comunidad Valenciana".
-- Páginas específicas y únicas para pulido, cristalizado, cristales, textiles, impermeabilización, hoteles y comunidades.
-- Hub de zonas de servicio y páginas provinciales únicas para Alicante, Valencia y Castellón.
-- Se han evitado cientos de páginas de municipio repetidas para no caer en páginas puerta / doorway pages.
-- Canonical, robots, Open Graph, Twitter Card y hreflang es-ES en páginas indexables.
-- Schema.org LocalBusiness + WebSite + OfferCatalog en Inicio; Service + BreadcrumbList en páginas de servicio.
-- Sitemap index, sitemap de páginas y sitemap de imágenes.
-- Imágenes con width/height, decoding async y lazy loading cuando procede.
-- Hero principal convertido a imagen HTML de alta prioridad para mejorar LCP.
-- Google Fonts eliminado para reducir peticiones externas y mejorar Core Web Vitals.
-- Cache larga para imágenes WebP en Cloudflare.
-- Enlazado interno contextual y footer SEO.
+SEO
+- Canonical y meta description por página.
+- Schema.org en Inicio y landings de servicio.
+- Sitemap de páginas e imágenes.
+- Landings específicas para servicios y provincias.
 - 404 marcado noindex.
-- Archivo STAGING-SEO.txt con instrucciones para no indexar el dominio temporal pages.dev.
+- Imágenes principales en WebP y lazy loading cuando procede.
 
-IMPORTANTE: ningún cambio técnico puede garantizar la posición nº1. Para búsquedas locales, el Perfil de Empresa de Google, reseñas, enlaces/citas locales, distancia y notoriedad influyen de forma decisiva.
+DATOS DE EMPRESA
+- Domenech Services S.L.
+- CIF: B93815306
+- Teléfono: +34 629 35 86 23
+- Email: domenechservices@gmail.com
+- Cobertura principal: Comunidad Valenciana.
+- Instagram y Facebook enlazados desde la web.
 
-
-CAMBIOS V4.1
-- Hero de Inicio simplificado:
-  "Domenech Services S.L."
-  "Pulido y cristalizado de suelos."
-- La referencia a Comunidad Valenciana, hoteles, comunidades, empresas y particulares
-  se mantiene en el texto de apoyo y en toda la arquitectura SEO.
-- Reducido ligeramente el tamaño y espacio vertical del hero.
-- Corregido el logo del footer en todas las páginas:
-  ahora conserva siempre su proporción original y no se deforma por los atributos HTML.
-
-
-CAMBIOS V4.2 — CORRECCIÓN DEFINITIVA DEL LOGO DEL FOOTER
-- Se crea un recurso exclusivo:
-  img/logo-domenech-footer-v2.webp
-- El footer ya no reutiliza el logo principal.
-- Se eliminan width/height HTML del logo del footer.
-- Regla CSS específica y reforzada para conservar siempre la proporción.
-- styles.css pasa a styles-v42.css para evitar que navegador/Cloudflare siga usando CSS anterior en caché.
-- Caché de CSS reducida temporalmente de 7 días a 1 hora mientras se termina el diseño.
-
-
-V4.4 — REDES SOCIALES
-- Instagram y Facebook añadidos al footer de todas las páginas.
-- Enlaces externos seguros con target=_blank y rel=noopener noreferrer.
-- Iconos SVG integrados, sin librerías externas.
-- sameAs añadido al LocalBusiness de Schema.org para asociar oficialmente los perfiles sociales a la empresa.
-- Email público actualizado a domenechservices@gmail.com.
-
-
-V4.4.1
-- Instagram y Facebook convertidos a iconos compactos en el footer.
-- Hoja de estilos renombrada a styles-v44.css para evitar caché antigua de Cloudflare/navegador.
-
-
-V4.4.2 — Redes sociales + favicon
-- Instagram y Facebook compactos en footer.
-- Favicon PNG de Domenech Services incluido en los 19 HTML.
-- Variantes 48x48, 96x96 y Apple Touch Icon 180x180.
-- Todos los HTML mantienen styles-v44.css para cache-bust.
+NOTAS DE MANTENIMIENTO
+- No añadir secretos al repositorio.
+- Tras cambios importantes de JavaScript, versionar el nombre del archivo para evitar caché antigua.
+- Las variables RESEND_API_KEY y TURNSTILE_SECRET_KEY deben existir en Runtime Secrets, no solo como variables de compilación.
+- El Worker sirve /api/* mediante código y el resto mediante env.ASSETS.
