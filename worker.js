@@ -1,4 +1,4 @@
-import { onRequestGet, onRequestPost } from "./functions/api/contacto.js";
+import { onRequestPost } from "./functions/api/contacto.js";
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -23,7 +23,6 @@ export default {
         passThroughOnException: ctx.passThroughOnException?.bind(ctx)
       };
 
-      if (request.method === "GET") return onRequestGet(context);
       if (request.method === "POST") return onRequestPost(context);
 
       return json({ ok: false, error: "Method not allowed" }, 405);
