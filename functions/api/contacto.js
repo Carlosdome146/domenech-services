@@ -1,27 +1,136 @@
+const ALLOWED_ORIGINS = new Set([
+  "https://domenechservices.com",
+  "https://www.domenechservices.com"
+]);
+
+const ALLOWED_SERVICES = new Set([
+  "Pulido y cristalizado de suelos y escaleras",
+  "Limpieza de moquetas, alfombras y tapicerías",
+  "Limpieza de cristales",
+  "Impermeabilización de cubiertas y tratamiento de filtraciones",
+  "Varios servicios / Otro"
+]);
+
+const MAX_BODY_BYTES = 16_000;
+const MIN_FILL_TIME_MS = 3_000;
+const MAX_FILL_TIME_MS = 2 * 60 * 60 * 1000;
+const RATE_LIMIT_SECONDS = 30;
+
+const responseHeaders = {
+  "Content-Type": "application/json; charset=utf-8",
+  "Cache-Control": "no-store",
+  "X-Content-Type-Options": "nosniff"
+};
+
+function json(data, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: responseHeaders
+  });
+}
+
+function clean(value, max = 2000) {
+  return String(value ?? "")
+    .replace(/[<>]/g, "")
+    .replace(/[\u0000-\u001F\u007F]/g, " ")
+    .trim()
+    .slice(0, max);
+}
+
+function validEmail(value) {
+  if (!value) return true;
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function validPhone(value) {
+  const digits = value.replace(/\D/g, "");
+  return digits.length >= 7 && digits.length <= 15;
+}
+
+async function isRateLimited(request) {
+  try {
+    const ip = request.headers.get("CF-Connecting-IP");
+    if (!ip || typeof caches === "undefined" || !caches.default) return false;
+
+    const cache = caches.default;
+    const key = new Request(
+      `https://domenechservices.com/__contact-rate-limit/${encodeURIComponent(ip)}`,
+      { method: "GET" }
+    );
+
+    const existing = await cache.match(key);
+    if (existing) return true;
+
+    await cache.put(
+      key,
+      new Response("1", {
+        headers: { "Cache-Control": `public, max-age=${RATE_LIMIT_SECONDS}` }
+      })
+    );
+  } catch (error) {
+    console.warn("Contact rate-limit cache unavailable", error);
+  }
+
+  return false;
+}
+
 export async function onRequestPost(context) {
   const { request, env } = context;
 
-  const headers = {
-    "Content-Type": "application/json; charset=utf-8",
-    "Cache-Control": "no-store"
-  };
+  const origin = request.headers.get("Origin");
+  const secFetchSite = request.headers.get("Sec-Fetch-Site");
+  const contentType = request.headers.get("Content-Type") || "";
+  const contentLength = Number(request.headers.get("Content-Length") || 0);
+
+  if (!origin || !ALLOWED_ORIGINS.has(origin)) {
+    return json({ ok: false, error: "Request not allowed" }, 403);
+  }
+
+  if (secFetchSite && !["same-origin", "same-site"].includes(secFetchSite)) {
+    return json({ ok: false, error: "Request not allowed" }, 403);
+  }
+
+  if (!contentType.toLowerCase().startsWith("application/json")) {
+    return json({ ok: false, error: "Unsupported content type" }, 415);
+  }
+
+  if (contentLength > MAX_BODY_BYTES) {
+    return json({ ok: false, error: "Request too large" }, 413);
+  }
+
+  if (await isRateLimited(request)) {
+    return json({ ok: false, error: "Too many requests" }, 429);
+  }
 
   if (!env.RESEND_API_KEY || !env.CONTACT_FROM_EMAIL) {
-    return new Response(
-      JSON.stringify({ ok: false, error: "Email service not configured" }),
-      { status: 503, headers }
-    );
+    return json({ ok: false, error: "Email service not configured" }, 503);
   }
 
   let data;
   try {
     data = await request.json();
   } catch {
-    return new Response(JSON.stringify({ ok: false, error: "Invalid JSON" }), { status: 400, headers });
+    return json({ ok: false, error: "Invalid request" }, 400);
   }
 
-  const clean = (value, max = 2000) =>
-    String(value ?? "").replace(/[<>]/g, "").trim().slice(0, max);
+  if (JSON.stringify(data).length > MAX_BODY_BYTES) {
+    return json({ ok: false, error: "Request too large" }, 413);
+  }
+
+  // Honeypot: los usuarios reales nunca ven ni rellenan este campo.
+  if (clean(data.website, 200)) {
+    return json({ ok: true });
+  }
+
+  const startedAt = Number(data.form_started_at);
+  const elapsed = Date.now() - startedAt;
+  if (
+    !Number.isFinite(startedAt) ||
+    elapsed < MIN_FILL_TIME_MS ||
+    elapsed > MAX_FILL_TIME_MS
+  ) {
+    return json({ ok: false, error: "Invalid form timing" }, 400);
+  }
 
   const nombre = clean(data.nombre, 120);
   const telefono = clean(data.telefono, 80);
@@ -29,9 +138,29 @@ export async function onRequestPost(context) {
   const servicio = clean(data.servicio, 220);
   const localidad = clean(data.localidad, 160);
   const mensaje = clean(data.mensaje, 4000);
+  const privacyAccepted =
+    data.privacy === true ||
+    data.privacy === "true" ||
+    data.privacy === "on";
 
-  if (!nombre || !telefono || !servicio || !mensaje) {
-    return new Response(JSON.stringify({ ok: false, error: "Missing required fields" }), { status: 400, headers });
+  if (
+    !nombre ||
+    !telefono ||
+    !servicio ||
+    !mensaje ||
+    !privacyAccepted
+  ) {
+    return json({ ok: false, error: "Missing required fields" }, 400);
+  }
+
+  if (
+    nombre.length < 2 ||
+    mensaje.length < 10 ||
+    !validPhone(telefono) ||
+    !validEmail(email) ||
+    !ALLOWED_SERVICES.has(servicio)
+  ) {
+    return json({ ok: false, error: "Invalid form data" }, 400);
   }
 
   const text = [
@@ -63,9 +192,10 @@ export async function onRequestPost(context) {
   });
 
   if (!resendResponse.ok) {
-    const detail = await resendResponse.text();
-    return new Response(JSON.stringify({ ok: false, error: "Email provider error", detail }), { status: 502, headers });
+    const providerDetail = await resendResponse.text();
+    console.error("Resend contact error", resendResponse.status, providerDetail);
+    return json({ ok: false, error: "Email provider error" }, 502);
   }
 
-  return new Response(JSON.stringify({ ok: true }), { status: 200, headers });
+  return json({ ok: true });
 }
