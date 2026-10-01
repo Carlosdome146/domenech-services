@@ -287,3 +287,19 @@ export async function onRequestPost(context) {
 
   return json({ ok: true, id: resendData.id || null });
 }
+
+
+export async function onRequestGet(context) {
+  const { env } = context;
+
+  return json({
+    ok: true,
+    service: "contacto",
+    build: "2026-10-01-v2",
+    environment: {
+      RESEND_API_KEY: !!env.RESEND_API_KEY,
+      CONTACT_FROM_EMAIL: !!env.CONTACT_FROM_EMAIL,
+      TURNSTILE_SECRET_KEY: !!env.TURNSTILE_SECRET_KEY
+    }
+  });
+}
