@@ -1,6 +1,7 @@
 (() => {
   const STORAGE_KEY = "domenech_cookie_consent_v1";
   const CONSENT_TTL_MS = 365 * 24 * 60 * 60 * 1000;
+  const GA_MEASUREMENT_ID = "G-DGFJ2F2ZW5";
 
   const defaults = {
     necessary: true,
@@ -64,9 +65,61 @@
     return consent;
   }
 
+  function loadGoogleAnalytics() {
+    if (window.__domenechGaLoaded) return;
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () {
+      window.dataLayer.push(arguments);
+    };
+
+    window.gtag("js", new Date());
+    window.gtag("config", GA_MEASUREMENT_ID);
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA_MEASUREMENT_ID)}`;
+    script.id = "domenech-ga4";
+    document.head.appendChild(script);
+
+    window.__domenechGaLoaded = true;
+  }
+
+  function disableGoogleAnalytics() {
+    if (typeof window.gtag === "function") {
+      window.gtag("consent", "update", {
+        analytics_storage: "denied"
+      });
+    }
+
+    document.cookie.split(";").forEach(cookieEntry => {
+      const name = cookieEntry.split("=")[0]?.trim();
+      if (!name || (name !== "_ga" && !name.startsWith("_ga_"))) return;
+
+      document.cookie = `${name}=; Max-Age=0; path=/; SameSite=Lax`;
+      document.cookie = `${name}=; Max-Age=0; path=/; domain=.domenechservices.com; SameSite=Lax`;
+    });
+  }
+
+  function syncAnalyticsConsent(consent) {
+    if (consent?.categories?.analytics) {
+      loadGoogleAnalytics();
+
+      if (typeof window.gtag === "function") {
+        window.gtag("consent", "update", {
+          analytics_storage: "granted"
+        });
+      }
+    } else {
+      disableGoogleAnalytics();
+    }
+  }
+
   function activateAllowedScripts() {
     const consent = state.consent || loadConsent();
     if (!consent) return;
+
+    syncAnalyticsConsent(consent);
 
     document.querySelectorAll('script[type="text/plain"][data-cookie-category]').forEach(oldScript => {
       const category = oldScript.dataset.cookieCategory;
@@ -436,8 +489,8 @@
           <div class="dc-cookie-category">
             <div>
               <strong>Analíticas</strong>
-              <p>Servirían para medir de forma agregada el uso de la web y detectar mejoras.</p>
-              <small>Actualmente la web no instala herramientas analíticas opcionales.</small>
+              <p>Permiten medir de forma agregada el uso de la web mediante Google Analytics 4 y detectar mejoras.</p>
+              <small>Solo se activa si autorizas la categoría de cookies analíticas.</small>
             </div>
             <label class="dc-switch" aria-label="Permitir cookies analíticas">
               <input id="dc-analytics" type="checkbox" ${analytics ? "checked" : ""}>
