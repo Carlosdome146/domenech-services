@@ -78,3 +78,17 @@ NOTAS DE MANTENIMIENTO
 - Tras cambios importantes de JavaScript, versionar el nombre del archivo para evitar caché antigua.
 - Las variables RESEND_API_KEY y TURNSTILE_SECRET_KEY deben existir en Runtime Secrets, no solo como variables de compilación.
 - El Worker sirve /api/* mediante código y el resto mediante env.ASSETS.
+
+
+EVENTOS GA4
+Se registran únicamente cuando el usuario ha aceptado cookies analíticas:
+- contact_click
+  - contact_method: whatsapp | phone | email
+  - link_location: header | footer | content | floating_button
+- quote_request_click
+  - link_location
+- generate_lead
+  - lead_source: website_contact_form
+  - service_name
+
+No se envían nombres, teléfonos, emails ni el contenido del mensaje a Google Analytics.
