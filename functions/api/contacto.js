@@ -15,6 +15,7 @@ const MAX_BODY_BYTES = 16_000;
 const MIN_FILL_TIME_MS = 3_000;
 const MAX_FILL_TIME_MS = 2 * 60 * 60 * 1000;
 const RATE_LIMIT_SECONDS = 30;
+const TURNSTILE_ACTION = "contact-form";
 
 const responseHeaders = {
   "Content-Type": "application/json; charset=utf-8",
@@ -45,6 +46,47 @@ function validEmail(value) {
 function validPhone(value) {
   const digits = value.replace(/\D/g, "");
   return digits.length >= 7 && digits.length <= 15;
+}
+
+async function verifyTurnstile(token, request, secret) {
+  const formData = new FormData();
+  formData.append("secret", secret);
+  formData.append("response", token);
+
+  const ip = request.headers.get("CF-Connecting-IP");
+  if (ip) formData.append("remoteip", ip);
+
+  const verifyResponse = await fetch(
+    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+    {
+      method: "POST",
+      body: formData
+    }
+  );
+
+  if (!verifyResponse.ok) {
+    console.error("Turnstile Siteverify HTTP error", verifyResponse.status);
+    return false;
+  }
+
+  const outcome = await verifyResponse.json();
+
+  if (!outcome.success) {
+    console.warn("Turnstile rejected request", outcome["error-codes"] || []);
+    return false;
+  }
+
+  if (!ALLOWED_ORIGINS.has(`https://${outcome.hostname}`)) {
+    console.warn("Turnstile hostname mismatch", outcome.hostname);
+    return false;
+  }
+
+  if (outcome.action !== TURNSTILE_ACTION) {
+    console.warn("Turnstile action mismatch", outcome.action);
+    return false;
+  }
+
+  return true;
 }
 
 async function isRateLimited(request) {
@@ -102,8 +144,8 @@ export async function onRequestPost(context) {
     return json({ ok: false, error: "Too many requests" }, 429);
   }
 
-  if (!env.RESEND_API_KEY || !env.CONTACT_FROM_EMAIL) {
-    return json({ ok: false, error: "Email service not configured" }, 503);
+  if (!env.RESEND_API_KEY || !env.CONTACT_FROM_EMAIL || !env.TURNSTILE_SECRET_KEY) {
+    return json({ ok: false, error: "Server configuration error" }, 503);
   }
 
   let data;
@@ -138,6 +180,7 @@ export async function onRequestPost(context) {
   const servicio = clean(data.servicio, 220);
   const localidad = clean(data.localidad, 160);
   const mensaje = clean(data.mensaje, 4000);
+  const turnstileToken = clean(data.turnstile_token, 2048);
   const privacyAccepted =
     data.privacy === true ||
     data.privacy === "true" ||
@@ -148,6 +191,7 @@ export async function onRequestPost(context) {
     !telefono ||
     !servicio ||
     !mensaje ||
+    !turnstileToken ||
     !privacyAccepted
   ) {
     return json({ ok: false, error: "Missing required fields" }, 400);
@@ -161,6 +205,19 @@ export async function onRequestPost(context) {
     !ALLOWED_SERVICES.has(servicio)
   ) {
     return json({ ok: false, error: "Invalid form data" }, 400);
+  }
+
+  const turnstileOk = await verifyTurnstile(
+    turnstileToken,
+    request,
+    env.TURNSTILE_SECRET_KEY
+  );
+
+  if (!turnstileOk) {
+    return json(
+      { ok: false, error: "Security verification failed", code: "turnstile_failed" },
+      403
+    );
   }
 
   const text = [
